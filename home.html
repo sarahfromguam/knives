@@ -1,1 +1,43 @@
-hello world 
+{% extends "layout.html" %}
+
+{% block content %}
+
+<script type="text/javascript" src="{{ url_for('static', filename = 'home.js') }}"></script> 
+<script type="text/javascript" src="{{ url_for('static', filename = 'learn.js') }}"></script>
+<script>
+        var information = {{data|tojson}}
+        console.log(information) 
+</script>
+
+<style>
+    #homeImg{
+        width: 600px;
+        height: 300px;
+    }
+    .align{
+        display: flex;
+        align-items: center;
+        justify-content: center
+    }
+    #learn{
+        text-align: center;
+    }
+
+
+</style>
+<body style = "background-color: white">
+    <div class = "container">
+            <h1>Which Knife Should I Use? </h1> 
+            <br>
+            <br>
+            <img id = "homeImg" src = "https://mindbodygreen-res.cloudinary.com/images/w_767,q_auto:eco,f_auto,fl_lossy/org/0wr2k66wbkz2ycooa/best-knife-sets-misen.png" alt = "Multiple Knives Image">
+            <br>
+            <br>
+            <button  id="learn" value="submit" class="goButton" >Learn Here</button>
+        <div class="storeView"> </div>
+          
+    </div>
+</body>
+
+{% endblock content%}
+

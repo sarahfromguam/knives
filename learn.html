@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+<html>
+	<head>
+        {% block content %}
+        <script>
+            var information = {{data|tojson}}
+            console.log(information)
+        </script>
+        <script type= "text/javascript" src="{{ url_for('static', filename = 'learn.js') }}"> </script>
+
+        <style>
+            .prevButton{
+                align-items:left;
+            }
+            .nextButton{
+                align-items: right;
+            }
+        </style>
+    </head>
+
+<body style = "background-color: lightGrey">
+    <div class = "container"> 
+        <div id = "storeView">
+            <h1 class = "header"> Knife Information:</h1> 
+            <br>
+            <div class= row> 
+                <div class="col-md-6">
+                    <div class = "nameHeader">
+                        {{data.name}}
+                    </div>
+                    <br>
+                    <br>
+                    <span> Facts:</span>
+                        <ul>
+                            {% for facts in data.facts %}
+                                <li>{{facts}}</li>
+                            {% endfor %}
+                        </ul>     
+                </div>
+                <div class = "col-md-6">
+                    <img alt="Knife Image" src = {{data.image}}></img>
+                <br>
+                <div>
+                    <button class = "prevButton" id="nextButton"> Next Knife</button>
+                    <button class = "nextButton"id="backButton"> Previous Knife</button>
+                </div>
+                
+                </div>
+           </div> 
+        </div>    
+    </div>
+</body>
+{% endblock %}
+</html>
+
+
+
+
