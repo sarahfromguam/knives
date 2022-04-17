@@ -1,5 +1,7 @@
-#hello_div{
-    padding-top:  10px;
-    padding-bottom:  10px;
-    color: pink;
+body{
+  background-color: #F3F3F3;
+}
+
+html{
+    background-color: #F3F3F3;  
 }

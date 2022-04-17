@@ -13,6 +13,6 @@ function display_learning(information){
         console.log(image_link) 
     })
     $(learn).click(function(){
-        window.location.href = '/learn/' + information["id"]
+        window.location.href = '/learn/0' 
     })
 }

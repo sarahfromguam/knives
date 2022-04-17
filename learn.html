@@ -4,55 +4,56 @@
         {% block content %}
         <script>
             var information = {{data|tojson}}
+						let allKnives = {{all_knives|tojson}}
             console.log(information)
         </script>
         <script type= "text/javascript" src="{{ url_for('static', filename = 'learn.js') }}"> </script>
 
         <style>
+						#knifeImg{
+							height: 400px;
+						}
             .prevButton{
                 align-items:left;
             }
             .nextButton{
                 align-items: right;
             }
+
         </style>
     </head>
 
 <body style = "background-color: lightGrey">
-    <div class = "container"> 
+    <div class = "container">
         <div id = "storeView">
-            <h1 class = "header"> Knife Information:</h1> 
+            <h1 class = "header"> {{data.name}}</h1>
             <br>
-            <div class= row> 
+            <div class= row>
                 <div class="col-md-6">
-                    <div class = "nameHeader">
+                    <!-- <div class = "nameHeader">
                         {{data.name}}
-                    </div>
-                    <br>
-                    <br>
+                    </div> -->
+                    <!-- <br>
+                    <br> -->
                     <span> Facts:</span>
                         <ul>
                             {% for facts in data.facts %}
                                 <li>{{facts}}</li>
                             {% endfor %}
-                        </ul>     
+                        </ul>
                 </div>
                 <div class = "col-md-6">
-                    <img alt="Knife Image" src = {{data.image}}></img>
+	            <img id = "knifeImg" src = {{data.image}} alt = "Knife Image">
                 <br>
                 <div>
-                    <button class = "prevButton" id="nextButton"> Next Knife</button>
-                    <button class = "nextButton"id="backButton"> Previous Knife</button>
+                    <button class = "prev" id="backButton"> Previous Knife</button>
+                    <button class = "next"id="nextButton"> Next Knife</button>
                 </div>
-                
+
                 </div>
-           </div> 
-        </div>    
+           </div>
+        </div>
     </div>
 </body>
 {% endblock %}
 </html>
-
-
-
-
