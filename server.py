@@ -238,6 +238,10 @@ def learn_item(id=None):
             }
     return render_template('learn.html', knife=this_knife, id=id)
 
+@app.route('/quiz/<id>', methods=["GET", "POST"])
+def quiz_item(id=None):
+    return render_template('quiz.html', quiz_data = quiz_data, id = id)
+
 
 # AJAX FUNCTIONS
 
