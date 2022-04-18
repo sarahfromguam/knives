@@ -209,6 +209,8 @@ quiz_data = [
     }
 ]
 
+correct_answers = 0;
+
 # ROUTES
 # Home
 
@@ -238,12 +240,25 @@ def learn_item(id=None):
             }
     return render_template('learn.html', knife=this_knife, id=id)
 
+# Quiz
+
 @app.route('/quiz/<id>', methods=["GET", "POST"])
 def quiz_item(id=None):
-    return render_template('quiz.html', quiz_data = quiz_data, id = id)
+    return render_template('quiz.html', quiz_data = quiz_data, id = id, correct_answers = correct_answers)
 
 
 # AJAX FUNCTIONS
+@app.route('/update_correct_answer', methods=['GET', 'POST'])
+def update_correct_answer():
+    global correct_answers
+
+    json_data = request.get_json()
+    current_value = int(json_data)
+
+    correct_answers = current_value + 1;
+
+    #send back data
+    return jsonify(correct_answers = correct_answers)
 
 # ajax for people.js
 # @app.route('/add_name', methods=['GET', 'POST'])
