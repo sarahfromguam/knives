@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<script type="text/javascript" src="{{ url_for('static', filename = 'home.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename = 'learn.js') }}"></script>
+<script>
+  var information = {{ data | tojson }}
+  // console.log(information)
+</script>
+
+<style>
+  #homeImg {
+    width: 600px;
+    height: 300px;
+  }
+
+  .align {
+    display: flex;
+    align-items: center;
+    justify-content: center
+  }
+
+  #learn {
+    text-align: center;
+  }
+
+  .knifeRowImg{
+    height: 300px;
+  }
+</style>
+
+<body style="background-color: white">
+  <div class="container">
+    <h1>Which Knife Should I Use? </h1>
+    <h3> Click on the first knife to start learning. </h3>
+    <div id="knifeRow">
+      <!-- <a href="/learn/1"><input type="image" class="knifeRowImg" src='../static/imgs/butter_knife.png' alt="Butter Knife" /></a> -->
+    </div>
+
+    <!-- <img id="homeImg" src="static/imgs/main.png" alt="Multiple Knives Image"> -->
+    <div class="">
+        <button id="learn" value="submit" class="goButton">Learn Here</button>
+    </div>
+    <div class="storeView"> </div>
+
+  </div>
+</body>
+
+{% endblock content%}

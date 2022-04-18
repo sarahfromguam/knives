@@ -81,7 +81,7 @@ data = [
     {
         "prevLesson_id": 8,
         "lesson_id": 9,
-        "nextLesson_id": 10,
+        "nextLesson_id": -2,
         "name": "Butter Knife",
         "image": "../static/imgs/butter_knife.png",
         "facts": ["Perhaps the most recognizable knife", "Blade is slightly serrated but has limited cutting versatility", "Broad nature of the knife where its thickness is must pronounced in the middle of the blade, is useful for spreading condiments"],
@@ -101,10 +101,10 @@ def hello_world():
 
 @app.route('/learn/<id>', methods=["GET", "POST"])
 def learn_item(id=None):
-    print(id)
     this_knife = []
-    print(this_knife)
+    knife_images = []
     for knife in data:
+        knife_images.append(knife["image"])
         if knife["lesson_id"] == int(id):
             print(knife["lesson_id"])
             this_knife = {
@@ -115,34 +115,33 @@ def learn_item(id=None):
                 "nextLesson_id": knife["lesson_id"] + 1,
                 "prevLesson_id": knife["lesson_id"] - 1
             }
-        print(this_knife)
-    return render_template('learn.html', all_knives=data, data=this_knife, id=id)
+    return render_template('learn.html', knife=this_knife, id=id)
 
 
 # AJAX FUNCTIONS
 
 # ajax for people.js
-@app.route('/add_name', methods=['GET', 'POST'])
-def add_name():
-    global data
-    global current_id
-
-    json_data = request.get_json()
-    name = json_data["name"]
-
-    # add new entry to array with
-    # a new id and the name the user sent in JSON
-    current_id += 1
-    new_id = current_id
-    new_name_entry = {
-        "name": name,
-        "id":  current_id
-    }
-
-    data.append(new_name_entry)
-
-    # send back the WHOLE array of data, so the client can redisplay it
-    return jsonify(data=data)
+# @app.route('/add_name', methods=['GET', 'POST'])
+# def add_name():
+#     global data
+#     global current_id
+#
+#     json_data = request.get_json()
+#     name = json_data["name"]
+#
+#     # add new entry to array with
+#     # a new id and the name the user sent in JSON
+#     current_id += 1
+#     new_id = current_id
+#     new_name_entry = {
+#         "name": name,
+#         "id":  current_id
+#     }
+#
+#     data.append(new_name_entry)
+#
+#     # send back the WHOLE array of data, so the client can redisplay it
+#     return jsonify(data=data)
 
 
 if __name__ == '__main__':
