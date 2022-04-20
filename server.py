@@ -241,6 +241,9 @@ def learn_item(id=None):
     return render_template('learn.html', knife=this_knife, id=id)
 
 # Quiz
+@app.route('/quiz/', methods=["GET", "POST"])
+def quiz_item_1():
+    return render_template('quiz.html', quiz_data = quiz_data, id = None, correct_answers = correct_answers)
 
 @app.route('/quiz/<id>', methods=["GET", "POST"])
 def quiz_item(id=None):
