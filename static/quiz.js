@@ -1,3 +1,4 @@
+let prog = 0
 function display_home(){
   // populate new data
   // set correct_answers to 0 and update server.py via ajax
@@ -53,10 +54,11 @@ function display_mc_pic_question(id){
   $(c3).append(t3)
   $(c3).append(img3)
   
-  let progess_bar = $('<div>').addClass('col-md-3 progress-block').append("<div class='progress' style='height:40px;'><div  class='progress-bar w-75 bg-dark' role='progressbar' aria-valuenow='75' aria-valuemin='0' aria-valuemax='100'>75%</div></div>")
+  let progess_bar = $('<div>').addClass('col-md-3 progress-block').append("<div class='progress' style='height:40px;'><div  class='progress-bar w-75 bg-dark' role='progressbar' aria-valuenow='0' aria-valuemin='0' aria-valuemax='10'>75%</div></div>")
+  $(progess_bar).attr('aria-valuenow',id.toString())
   let second_row = $('<div>').addClass('row progress-row')
   $(second_row).append(progess_bar)
-
+  
   
   $(row).append(c1)
   $(row).append(c2)
@@ -65,6 +67,7 @@ function display_mc_pic_question(id){
   $('body').append(row)
   $('body').append(second_row)
   
+  $('.progress-bar').html(id +'/10')
   
   $('body').append(second_row)
   $(".ch").hover(function(){
@@ -79,8 +82,9 @@ function display_mc_pic_question(id){
     $(this).css('background-color', '#838383');
     if($(this).attr('id')===quiz_data[id]['answer']){
       $('.ch').off()
+      prog+=1
+      update_correct_answer(correct_answers+1);
       display_mc_pic_question_correct(id)
-      
     }else{
       let selected = $(this).attr('id')
       $('.ch').off()
@@ -144,10 +148,11 @@ function display_mc_word_question(id){
   $(c3).append(t3)
 
   
-  let progess_bar = $('<div>').addClass('col-md-3 progress-block').append("<div class='progress' style='height:40px;'><div  class='progress-bar w-75 bg-dark' role='progressbar' aria-valuenow='75' aria-valuemin='0' aria-valuemax='100'>75%</div></div>")
+  let progess_bar = $('<div>').addClass('col-md-3 progress-block').append("<div class='progress' style='height:40px;'><div  class='progress-bar w-75 bg-dark' role='progressbar' aria-valuenow='0' aria-valuemin='0' aria-valuemax='10'>75%</div></div>")
+  $(progess_bar).attr('aria-valuenow',id.toString())
   let second_row = $('<div>').addClass('row progress-row')
   $(second_row).append(progess_bar)
-
+  
   
   $(row).append(c1)
   $(row).append(c2)
@@ -155,7 +160,8 @@ function display_mc_word_question(id){
   
   $('body').append(row)
   $('body').append(second_row)
-  
+  let pr = prog/10
+  $('.progress-bar').html(pr)
   
   $('body').append(second_row)
   $(".ch").hover(function(){
@@ -170,6 +176,8 @@ function display_mc_word_question(id){
     $(this).css('background-color', '#838383');
     if($(this).attr('id')===quiz_data[id]['answer']){
       $('.ch').off()
+      prog+=1
+      update_correct_answer(correct_answers+1);
       display_mc_word_question_correct(id)
     }else{
       let selected = $(this).attr('id')
@@ -227,7 +235,8 @@ function display_tf_question(id){
 
   $(c2).append(t2)
   
-  let progess_bar = $('<div>').addClass('col-md-3 progress-block').append("<div class='progress' style='height:40px;'><div  class='progress-bar w-75 bg-dark' role='progressbar' aria-valuenow='75' aria-valuemin='0' aria-valuemax='100'>75%</div></div>")
+  let progess_bar = $('<div>').addClass('col-md-3 progress-block').append("<div class='progress' style='height:40px;'><div  class='progress-bar w-75 bg-dark' role='progressbar' aria-valuenow='0' aria-valuemin='0' aria-valuemax='10'>75%</div></div>")
+  $(progess_bar).attr('aria-valuenow',id.toString())
   let second_row = $('<div>').addClass('row progress-row')
   $(second_row).append(progess_bar)
 
@@ -238,7 +247,8 @@ function display_tf_question(id){
   
   $('body').append(row)
   $('body').append(second_row)
-  
+ 
+  $('.progress-bar').html(id)
   
   $('body').append(second_row)
   $(".ch").hover(function(){
@@ -253,6 +263,8 @@ function display_tf_question(id){
     $(this).css('background-color', '#838383');
     if($(this).attr('id')===quiz_data[id]['answer']){
       $('.ch').off()
+      prog+=1
+      update_correct_answer(correct_answers+1);
       display_mc_word_question_correct(id)
     }else{
       let selected = $(this).attr('id')
@@ -319,7 +331,7 @@ function update_correct_answer(correct_answers) {
 function display_end(){
   let text = $('<div>').append("<div class= 'quiz-home-text grey font-weight-bold'>Good try! This is your score: BLANK<div>").addClass('m-5')
   let but = $('<div>').append("<button value='submit' class='start-quiz quiz-button btn btn-dark btn-lg goButton quiz-home-button'>RETAKE QUIZ!</button>").addClass('m-5')
-  let but2 = $('<div>').append("<button value='submit' class='start-quiz quiz-button btn btn-secondary btn-lg goButton quiz-end-button'>REVIEW ANSWERS</button>").addClass('m-5')
+  let but2 = $('<div>').append("<button value='submit' class='go-learn quiz-button btn btn-secondary btn-lg goButton quiz-end-button'>REVIEW ANSWERS</button>").addClass('m-5')
   let img = $('<div>').append("<img class='quiz-img' src='/static/imgs/knives-crossing.png' alt='Begin Quiz'></img>")
   let container = $('<div>').addClass('row quiz-container hammersmith')
   $(container).append(text)
@@ -331,6 +343,9 @@ function display_end(){
   $( ".start-quiz" ).click(function() {
     window.location.href = '/quiz/1'
   });
+  $( ".go-learn" ).click(function() {
+    window.location.href = '/learn/0'
+  });
 }
 
 
@@ -339,7 +354,7 @@ $(document).ready(function(){
   // depending on value from id, go to entry in quiz_data, find the "type" for the data entry, and call the write function to display it (e.g. if the "type" is "mc_pic", call the display_mc_pic_question(id))
   if(id === null){
     display_home();
-
+    prog = 0
   }else if(id < 11){
     //question text
     let question = $('<div>').append('Q'+id + ': ' + quiz_data[id]['question']).addClass('font-weight-bold quiz-text');
