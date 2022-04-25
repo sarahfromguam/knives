@@ -80,6 +80,15 @@ font-family: 'Sansita Swashed', cursive;
   margin: 30px;
 }
 
+.pic-choice-sm{
+  border-radius: 25px;
+  border: 2px solid #646464;
+  padding: 20px; 
+  width: 200px;
+  height: 75px; 
+  margin: 30px;
+}
+
 .quiz-choice-pic{
   height:90%;
 }
@@ -89,6 +98,13 @@ font-family: 'Sansita Swashed', cursive;
 .quiz-home-button {
   position: absolute;
   top: 35%;
+  left: 50%;
+  width:300px;
+  transform: translate(-50%, -50%);
+}
+.quiz-end-button{
+  position: absolute;
+  top: 40%;
   left: 50%;
   width:300px;
   transform: translate(-50%, -50%);
@@ -113,6 +129,9 @@ font-family: 'Sansita Swashed', cursive;
 
 .grey {
   color: darkgrey;
+}
+$sm-ch {
+  height: 200; 
 }
 
 .progress-block {
