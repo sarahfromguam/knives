@@ -12,7 +12,8 @@ data = [
         "nextLesson_id": 1,
         "name": "Chef's Knife",
         "image": "../static/imgs/chef_knife.png",
-        "facts": ["Curved blade allows for rocking back and forth on cutting board", "Width and long length of the knife enable it to do heavier duty chopping - like bundles of vegetables or potatoes", "Blade is 8 inches in length and 1.5 inches in width", "The most versatile knife"],
+        "facts": ["Curved blade allows for rocking back and forth on cutting board", "Width and long length of the knife enable it to do heavier duty chopping - like bundles of vegetables or potatoes", "The most versatile knife"],
+        "ht": 12,
     },
     {
         "prevLesson_id": 0,
@@ -20,7 +21,8 @@ data = [
         "nextLesson_id": 2,
         "name": "Paring Knife",
         "image": "../static/imgs/paring_knife.png",
-        "facts": ["Small blade means the knife is light in the hand", "Blade is 3–4 inches long", "Intended for more delicate work with greater control, such as peeling, trimming, and removing seeds"],
+        "facts": ["Small blade means the knife is light in the hand", "Intended for more delicate work with greater control, such as peeling, trimming, and removing seeds"],
+        "ht": 8,
     },
     {
         "prevLesson_id": 1,
@@ -29,6 +31,7 @@ data = [
         "name": "Utility Knife",
         "image": "../static/imgs/utility_knife.png",
         "facts": ["Mix between a paring knife and a chef’s knife", "They feature scalloped edges and blades that are slightly longer than standard paring knives", "Good for dicing smaller vegetables, such as shallots or cured meat items like salami"],
+        "ht": 10,
     },
     {
         "prevLesson_id": 2,
@@ -36,7 +39,8 @@ data = [
         "nextLesson_id": 4,
         "name": "Bread Knife",
         "image": "../static/imgs/bread_knife.png",
-        "facts": ["Serrated blade good for food that is hard on outside and soft on inside, like bread", "Cuts delicate baked goods", "Most bread knives feature offset handles, in order to prevent the user’s knuckles from hitting the cutting board", 'Bread knives are usually between 7"-10” long.'],
+        "facts": ["Serrated blade good for food that is hard on outside and soft on inside, like bread", "Cuts delicate baked goods", "Most bread knives feature offset handles, in order to prevent the user’s knuckles from hitting the cutting board"],
+        "ht": 11,
     },
     {
         "prevLesson_id": 3,
@@ -45,6 +49,7 @@ data = [
         "name": "Carving Knife",
         "image": "../static/imgs/carving_knife.png",
         "facts": ["Longest and narrowest blades of all the knives", "Thin knife enables smooth uniform slices", "Suited for cutting meats, like poultry, beef, and pork, among others"],
+        "ht": 12,
     },
     {
         "prevLesson_id": 4,
@@ -53,6 +58,7 @@ data = [
         "name": "Boning Knife",
         "image": "../static/imgs/boning_knife.png",
         "facts": ["Its slim, narrow profile enables precise cutting and versatile manoeuverabilit", "Cuts between joints and removes cartilage thereby reducing the amount of wasted meat"],
+        "ht": 9,
     },
     {
         "prevLesson_id": 5,
@@ -61,6 +67,7 @@ data = [
         "name": "Filleting Knife",
         "image": "../static/imgs/filleting_knife.png",
         "facts": ["Similar to a boning knife, except the blade is thinner, longer and more flexible", "Finely pointed tip helps chefs put through the skin of fish"],
+        "ht": 9.5,
     },
     {
         "prevLesson_id": 6,
@@ -69,6 +76,7 @@ data = [
         "name": "Santoku Knife",
         "image": "../static/imgs/santoku_knife.png",
         "facts": ["Name means “three uses” – cutting, dicing, mincing", "Long, slightly tapered blades with characteristic dimples to prevent food from sticking to the metal", "Often used to prepare raw fish"],
+        "ht": 14,
     },
     {
         "prevLesson_id": 7,
@@ -77,6 +85,7 @@ data = [
         "name": "Butcher Knife",
         "image": "../static/imgs/butcher_knife.png",
         "facts": ["Flat, rectangular shaped blades, sometimes with a hole so the blade can be hung when not in use", "Broad and heavy, it is great for raw meat preparation and cutting through bone"],
+        "ht": 13,
     },
     {
         "prevLesson_id": 8,
@@ -85,6 +94,7 @@ data = [
         "name": "Butter Knife",
         "image": "../static/imgs/butter_knife.png",
         "facts": ["Perhaps the most recognizable knife", "Blade is slightly serrated but has limited cutting versatility", "Broad nature of the knife where its thickness is must pronounced in the middle of the blade, is useful for spreading condiments"],
+        "ht": 9,
     }
 ]
 
@@ -214,9 +224,13 @@ correct_answers = 0;
 # ROUTES
 # Home
 
-
 @app.route('/')
-def hello_world():
+def frontpage():
+    return render_template('frontpage.html', data=data)
+
+
+@app.route('/home')
+def home():
     return render_template('home.html', data=data)
 
 # Learn
@@ -235,10 +249,11 @@ def learn_item(id=None):
                 "name": knife["name"],
                 "image": knife["image"],
                 "facts": knife["facts"],
+                "ht": knife["ht"],
                 "nextLesson_id": knife["lesson_id"] + 1,
                 "prevLesson_id": knife["lesson_id"] - 1
             }
-    return render_template('learn.html', knife=this_knife, id=id)
+    return render_template('learn.html', data=data, knife=this_knife, id=id)
 
 # Quiz
 @app.route('/quiz/', methods=["GET", "POST"])

@@ -1,19 +1,123 @@
-function display_home(id){
+function display_home(){
   // populate new data
   // set correct_answers to 0 and update server.py via ajax
+  // quiz home
+  let text = $('<div>').append("<div class= 'quiz-home-text grey font-weight-bold'>Are you the sharpest knife in the drawer?<div>").addClass('m-5')
+  let but = $('<div>').append("<button value='submit' class='start-quiz quiz-button btn btn-dark btn-lg goButton quiz-home-button'>BEGIN QUIZ!</button>").addClass('m-5')
+  let img = $('<div>').append("<img class='quiz-img' src='/static/imgs/knives-crossing.png' alt='Begin Quiz'></img>")
+  let container = $('<div>').addClass('row quiz-container hammersmith')
+  $(container).append(text)
+  $(container).append(img)
+  $(container).append(but)
+  $('body').append(container)
+
+  $( ".start-quiz" ).click(function() {
+    window.location.href = '/quiz/1'
+  });
 }
 
 function display_mc_pic_question(id){
   // populate new data
-}
+  let row = $('<div>').addClass('row text-center answers-row' )
 
+  let c1 = $('<div>').addClass('pic-choice ch col-md-3').attr('id','op1')
+  let t1 = $('<div>').append('A. '+ quiz_data[id]['op1']).addClass('hammersmith quiz-font-size')
+  let img1 = $('<img />', {
+    id: 'pic1',
+    src: quiz_data[id]['op1_pic'],
+    alt: 'option 1',
+    class: 'quiz-choice-pic text-center'
+  })
+  $(c1).append(t1)
+  $(c1).append(img1)
+  
+  let c2 = $('<div>').addClass('pic-choice ch col-md-3').attr('id','op2')
+  let t2 = $('<div>').append('B. '+ quiz_data[id]['op2']).addClass('hammersmith quiz-font-size')
+  let img2 = $('<img />', {
+    id: 'pic2',
+    src: quiz_data[id]['op2_pic'],
+    alt: 'option 2',
+    class: 'quiz-choice-pic text-center'
+  })
+  $(c2).append(t2)
+  $(c2).append(img2)
+
+  let c3 = $('<div>').addClass('pic-choice ch col-md-3').attr('id','op3')
+  let t3 = $('<div>').append('C. '+ quiz_data[id]['op3']).addClass('hammersmith quiz-font-size')
+  let img3 = $('<img />', {
+    id: 'pic3',
+    src: quiz_data[id]['op3_pic'],
+    alt: 'option 3',
+    class: 'quiz-choice-pic text-center'
+  })
+  $(c3).append(t3)
+  $(c3).append(img3)
+  
+  let progess_bar = $('<div>').addClass('col-md-3 progress-block').append("<div class='progress' style='height:40px;'><div  class='progress-bar w-75 bg-dark' role='progressbar' aria-valuenow='75' aria-valuemin='0' aria-valuemax='100'>75%</div></div>")
+  let second_row = $('<div>').addClass('row progress-row')
+  $(second_row).append(progess_bar)
+
+  
+  $(row).append(c1)
+  $(row).append(c2)
+  $(row).append(c3)
+  
+  $('body').append(row)
+  $('body').append(second_row)
+  
+  
+  $('body').append(second_row)
+  $(".ch").hover(function(){
+    $(this).css("background", "darkgrey");
+    },
+    function(){
+        $(this).css("background","transparent");
+    });
+  
+
+  $('body').on('click', '.ch',function(){
+    $(this).css('background-color', '#838383');
+    if($(this).attr('id')===quiz_data[id]['answer']){
+      display_mc_pic_question_correct(id)
+    }else{
+      let selected = $(this).attr('id')
+      display_mc_pic_question_wrong(id,selected)
+    }
+  })
+}
 function display_mc_pic_question_correct(id){
   // populate new data
   // When the answer is correct, we need to call the update_correct_answer function
+  console.log('correct')
+  $('.ch').off()
+  let correct_op = quiz_data[id]['answer']
+  $('#' + correct_op).css('background-color','#90EE90')
+  let but = $('<div>').append("<button value='submit' class='btn btn-dark btn-lg goButton quiz-but'>NEXT</button>").addClass('m-5')
+  $('.answers-row').append(but)
+
+  $( ".quiz-but" ).click(function() {
+    window.location.href = '/quiz/' + (parseInt(id)+1);
+  });
+  
 }
 
-function display_mc_pic_question_wrong(id){
+function display_mc_pic_question_wrong(id,selected){
   // populate new data
+  console.log('incorrect')
+  $('.ch').off()
+  let correct_op = quiz_data[id]['answer']
+  $('#' + correct_op).css('background-color','#90EE90')
+  let incorrect_op = selected;
+  $('#' + incorrect_op).css('background-color','#ffcccb')
+  let desc = $('<div>').append(quiz_data[id]['explanation']).addClass('text-danger hammersmith font-weight-bold col-md-6')
+  $('.quiz-but').html('NEXT')
+  $('.progress-row').append(desc)
+  let but = $('<div>').append("<button value='submit' class='btn btn-dark btn-lg goButton quiz-but'>NEXT</button>").addClass('m-5')
+  $('.answers-row').append(but)
+
+  $( ".quiz-but" ).click(function() {
+    window.location.href = '/quiz/' + (parseInt(id)+1);
+  });
 }
 
 function display_mc_word_question(id){
@@ -68,17 +172,23 @@ function update_correct_answer(correct_answers) {
 $(document).ready(function(){
   // depending on value from id, go to entry in quiz_data, find the "type" for the data entry, and call the write function to display it (e.g. if the "type" is "mc_pic", call the display_mc_pic_question(id))
   if(id === null){
-    // quiz home
-    $('body').addClass('align-items-center text-center justify-content-center')
-    let text = $('<div>').append('<div>Are you the sharpest knife in the drawer?<div>').addClass('m-5')
-    $('body').append(text)
-    let but = $('<div>').append('<button type="button" class="btn btn-primary start-quiz">Primary</button>').addClass('m-5')
-    $('body').append(but)
-    $( ".start-quiz" ).click(function() {
-      window.location.href = '/quiz/1'
-    });
+    display_home();
   }else{
-    $('body').addClass('align-items-center text-center justify-content-center')
+    //question text
+    let question = $('<div>').append('Q'+id + ': ' + quiz_data[id]['question']).addClass('font-weight-bold quiz-text');
+    $('body').append(question);
+    //display question
+    if(quiz_data[id]['type']==='mc_pic'){
+      display_mc_pic_question(id);
+    }else if(quiz_data[id]['type']==='tf'){
+      console.log('hi');
+    }else if(quiz_data[id]['type']==='mc_word'){
+      console.log('hi');
+    }
+
+
+
+/*     $('body').addClass('align-items-center text-center justify-content-center')
     //display questions
     let question = $('<div>').append(quiz_data[id]['question']).addClass('font-weight-bold')
     $('body').append(question)
@@ -102,20 +212,20 @@ $(document).ready(function(){
     }
     $('body').append(row1)
     $('body').append(row2)
-
+ */
     /* $( "op1" ).click(function() {
       if(quiz_data[id]['answer']==='op1'){
 
       }
     }); */
     
-    //temporary cycle through questions
+    /* //temporary cycle through questions
     row3 = $('<div>').addClass('row h-25')
     next_q = $('<button>').append('Next question').addClass('btn btn-dark').attr('id','next')
     $(row3).append(next_q)
     $('body').append(row3)
     $( "#next" ).click(function() {
       window.location.href = '/quiz/' + (parseInt(id)+1);
-    });
+    }); */
   }
 })
