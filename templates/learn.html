@@ -5,7 +5,11 @@
 	{% block content %}
 	<script>
 		let information = {{ knife | tojson }}
+		let progress = {{progress|tojson}}
+		let id = {{id|tojson}}
+		console.log("id",id)
 		// console.log(information)
+		console.log("process", progress)
 	</script>
 	<script type="text/javascript" src="{{ url_for('static', filename = 'learn.js') }}"> </script>
 
@@ -21,16 +25,21 @@
 				</div>
 				<div class="col-md-8">
 					<h1 class="title header"> {{knife.name.upper()}}</h1>
-					<br>
 					<ul class="facts">
 						{% for facts in knife.facts %}
 						<li>{{facts}}</li>
 						{% endfor %}
 					</ul>
+					<div class="foodImgs">
+							 <img id = "foodImg1" src ={{knife.food_img1}} alt = "Food Image 1">
+							 <img id = "foodImg2" src = {{knife.food_img2}} alt = "Food Image 2">
+					</div>
 				</div>
 			</div>
 		<div class="next-prev-div">
+			<button class="btn btn-outline-dark prev next-prev" id="AllKnivesButton"> 🏡 All Knives</button>
 			<button class="btn btn-outline-dark prev next-prev" id="backButton">← Previous</button>
+			<!-- <a id="AllKnivesButton"> Back to All Knives</a> -->
 			<button class="btn btn-outline-dark next next-prev" id="nextButton"> Next →</button>
 		</div>
 	</div>

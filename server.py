@@ -12,7 +12,8 @@ data = [
         "nextLesson_id": 1,
         "name": "Chef's Knife",
         "image": "../static/imgs/chef_knife.png",
-        "facts": ["Curved blade allows for rocking back and forth on cutting board", "Width and long length of the knife enable it to do heavier duty chopping - like bundles of vegetables or potatoes", "The most versatile knife"],
+        "food-imgs": ["../static/imgs/salmon.png", "../static/imgs/veg.png"],
+        "facts": ["Curved blade allows for rocking back and forth", "Heavy duty chopping, like vegetables or salmon", "The most versatile knife"],
         "ht": 12,
     },
     {
@@ -21,6 +22,7 @@ data = [
         "nextLesson_id": 2,
         "name": "Paring Knife",
         "image": "../static/imgs/paring_knife.png",
+        "food-imgs": ["../static/imgs/avo.png", "../static/imgs/apple.png"],
         "facts": ["Small blade means the knife is light in the hand", "Intended for more delicate work with greater control, such as peeling, trimming, and removing seeds"],
         "ht": 8,
     },
@@ -30,7 +32,8 @@ data = [
         "nextLesson_id": 3,
         "name": "Utility Knife",
         "image": "../static/imgs/utility_knife.png",
-        "facts": ["Mix between a paring knife and a chef’s knife", "They feature scalloped edges and blades that are slightly longer than standard paring knives", "Good for dicing smaller vegetables, such as shallots or cured meat items like salami"],
+        "food-imgs": ["../static/imgs/tomato.png", "../static/imgs/salami.png"],
+        "facts": ["Features scalloped edges and blades that are slightly longer than standard paring knives", "Good for dicing smaller vegetables, such as shallots or cured meat items like salami"],
         "ht": 10,
     },
     {
@@ -39,7 +42,8 @@ data = [
         "nextLesson_id": 4,
         "name": "Bread Knife",
         "image": "../static/imgs/bread_knife.png",
-        "facts": ["Serrated blade good for food that is hard on outside and soft on inside, like bread", "Cuts delicate baked goods", "Most bread knives feature offset handles, in order to prevent the user’s knuckles from hitting the cutting board"],
+        "food-imgs": ["../static/imgs/roll.png", "../static/imgs/bread.png"],
+        "facts": ["Serrated blade good for food that is hard on outside and soft on inside, like baked goods", "Most feature offset handles to prevent the user’s knuckles from hitting the cutting board"],
         "ht": 11,
     },
     {
@@ -48,6 +52,7 @@ data = [
         "nextLesson_id": 5,
         "name": "Carving Knife",
         "image": "../static/imgs/carving_knife.png",
+        "food-imgs": ["../static/imgs/steak.png", "../static/imgs/chicken.png"],
         "facts": ["Longest and narrowest blades of all the knives", "Thin knife enables smooth uniform slices", "Suited for cutting meats, like poultry, beef, and pork, among others"],
         "ht": 12,
     },
@@ -57,6 +62,7 @@ data = [
         "nextLesson_id": 6,
         "name": "Boning Knife",
         "image": "../static/imgs/boning_knife.png",
+        "food-imgs": ["../static/imgs/bone.png", "../static/imgs/streaky-meat.png"],
         "facts": ["Its slim, narrow profile enables precise cutting and versatile manoeuverabilit", "Cuts between joints and removes cartilage thereby reducing the amount of wasted meat"],
         "ht": 9,
     },
@@ -66,6 +72,7 @@ data = [
         "nextLesson_id": 7,
         "name": "Filleting Knife",
         "image": "../static/imgs/filleting_knife.png",
+        "food-imgs": ["../static/imgs/fillet.png", "../static/imgs/fillet2.png"],
         "facts": ["Similar to a boning knife, except the blade is thinner, longer and more flexible", "Finely pointed tip helps chefs put through the skin of fish"],
         "ht": 9.5,
     },
@@ -75,8 +82,9 @@ data = [
         "nextLesson_id": 8,
         "name": "Santoku Knife",
         "image": "../static/imgs/santoku_knife.png",
+        "food-imgs": ["../static/imgs/sushi.png", "../static/imgs/raw-fish.png"],
         "facts": ["Name means “three uses” – cutting, dicing, mincing", "Long, slightly tapered blades with characteristic dimples to prevent food from sticking to the metal", "Often used to prepare raw fish"],
-        "ht": 14,
+        "ht": 11,
     },
     {
         "prevLesson_id": 7,
@@ -84,6 +92,7 @@ data = [
         "nextLesson_id": 9,
         "name": "Butcher Knife",
         "image": "../static/imgs/butcher_knife.png",
+        "food-imgs": ["../static/imgs/meat.png", "../static/imgs/steak.png"],
         "facts": ["Flat, rectangular shaped blades, sometimes with a hole so the blade can be hung when not in use", "Broad and heavy, it is great for raw meat preparation and cutting through bone"],
         "ht": 13,
     },
@@ -93,7 +102,8 @@ data = [
         "nextLesson_id": -2,
         "name": "Butter Knife",
         "image": "../static/imgs/butter_knife.png",
-        "facts": ["Perhaps the most recognizable knife", "Blade is slightly serrated but has limited cutting versatility", "Broad nature of the knife where its thickness is must pronounced in the middle of the blade, is useful for spreading condiments"],
+        "food-imgs": ["../static/imgs/butter.png", "../static/imgs/jam.png"],
+        "facts": ["Blade is slightly serrated but has limited cutting versatility", "Thickness of blade most pronounced in the middle of the blade makes it useful for spreading condiments"],
         "ht": 9,
     }
 ]
@@ -168,12 +178,12 @@ quiz_data = [
         "op1_pic": "../static/imgs/filleting_knife.png",
         "op2_pic": "../static/imgs/paring_knife.png",
         "op3_pic": "../static/imgs/santoku_knife.png",
-        "explanation": "A Santoku knife is suited for preparing raw fish because its dimples prevent food from sticking to thee blade.",
+        "explanation": "A Santoku knife is suited for preparing raw fish because its dimples prevent food from sticking to the blade.",
     },
     {
         "question_id": 6,
         "type": "mc_word",
-        "question": "What does 'Santukou' mean?",
+        "question": "What qualities make a butchers knife capable of cutting through bone?",
         "answer": "op1",
         "op1": "broad and heavy",
         "op2": "sharp and narrow",
@@ -183,7 +193,7 @@ quiz_data = [
     {
         "question_id": 7,
         "type": "mc_word",
-        "question": "What qualities make a butchers knife capable of cutting through bone?",
+        "question": "What does 'Santukou' mean?",
         "answer": "op3",
         "op1": "well-rounded",
         "op2": "dimpled",
@@ -219,7 +229,8 @@ quiz_data = [
     }
 ]
 
-correct_answers = 0;
+correct_answers = 0
+progress = 0
 
 # ROUTES
 # Home
@@ -251,9 +262,11 @@ def learn_item(id=None):
                 "facts": knife["facts"],
                 "ht": knife["ht"],
                 "nextLesson_id": knife["lesson_id"] + 1,
-                "prevLesson_id": knife["lesson_id"] - 1
+                "prevLesson_id": knife["lesson_id"] - 1,
+                "food_img1": knife["food-imgs"][0],
+                "food_img2": knife["food-imgs"][1],
             }
-    return render_template('learn.html', data=data, knife=this_knife, id=id)
+    return render_template('learn.html', data=data, knife=this_knife, id=id, progress = progress)
 
 # Quiz
 @app.route('/quiz/', methods=["GET", "POST"])
@@ -273,10 +286,26 @@ def update_correct_answer():
     json_data = request.get_json()
     current_value = int(json_data)
 
-    correct_answers = current_value + 1;
+    correct_answers = current_value + 1
 
     #send back data
     return jsonify(correct_answers = correct_answers)
+
+@app.route('/update_progress', methods=['GET', 'POST'])
+def update_progress():
+    global progress
+
+    json_data = request.get_json()
+    current_value = int(json_data)
+    print("value",current_value)
+    print("hello")
+
+    progress = current_value + 1
+    print("process",progress)
+
+    #send back data
+    return jsonify(progress = progress)
+
 
 # ajax for people.js
 # @app.route('/add_name', methods=['GET', 'POST'])

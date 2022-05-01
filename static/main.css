@@ -31,9 +31,18 @@ font-family: 'Sansita Swashed', cursive;
   margin-top: 100px;
 }
 
+.dark-grey{
+  color: #555555;
+}
+
+.explore{
+  padding: 15px 0;
+}
+
 .facts{
   font-family: 'Roboto', sans-serif;
   font-size: 30px;
+  margin-top: -20px;
 }
 
 .frontpage-container {
@@ -56,9 +65,19 @@ font-family: 'Sansita Swashed', cursive;
   margin-top: 200px;
   width: 500px;
 }
+
+.grey {
+  color: darkgrey;
+}
+
+.learn-container{
+  padding-top: 50px;
+}
+
 .quiz-img {
   height: 80%;
 }
+
 .quiz-home-text {
   position: absolute;
   font-size: 30px;
@@ -66,26 +85,28 @@ font-family: 'Sansita Swashed', cursive;
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
 .quiz-text {
   font-size: 30px;
   text-align: left;
   padding:10px;
 }
+
 .pic-choice{
   border-radius: 25px;
   border: 2px solid #646464;
-  padding: 20px; 
+  padding: 20px;
   width: 200px;
-  height: 420px; 
+  height: 420px;
   margin: 30px;
 }
 
 .pic-choice-sm{
   border-radius: 25px;
   border: 2px solid #646464;
-  padding: 20px; 
+  padding: 20px;
   width: 200px;
-  height: 75px; 
+  height: 75px;
   margin: 30px;
 }
 
@@ -126,19 +147,6 @@ font-family: 'Sansita Swashed', cursive;
   padding: 20px 60px;
   font-size: 33px;
 } */
-
-.grey {
-  color: darkgrey;
-}
-$sm-ch {
-  height: 200; 
-}
-
-.progress-block {
-  height:50px;
-  padding:10px;
-  margin-left: 20px;
-}
 
 .hammersmith {
   font-family: 'Hammersmith One', sans-serif;
@@ -202,6 +210,13 @@ $sm-ch {
   align-items: left;
 }
 
+
+.progress-block {
+  height:50px;
+  padding:10px;
+  margin-left: 20px;
+}
+
 .roboto {
   font-family: 'Roboto', sans-serif;
   font-weight: bold;
@@ -212,11 +227,25 @@ $sm-ch {
   font-style: italic;
 }
 
+$sm-ch {
+  height: 200;
+}
+
+
 .title {
   padding: 40px 0;
 }
 
 /* IDS  */
+#foodImg1{
+  width: 300px;
+  margin-left: 20px;
+}
+
+#foodImg2{
+  width: 300px;
+}
+
 #homeImg {
   width: 600px;
   height: 300px;
