@@ -50,8 +50,7 @@ function update_learning(information) {
 
 
 
-  let Progress_Status = $('<div>').addClass('col-md-3 progress-block').append("<div class='progress' style='height:40px;'><div  class='progress-bar w-75 bg-dark' role='progressbar' aria-valuenow='0' aria-valuemin='0' aria-valuemax='10'>75%</div></div>")
-  $('.progress-bar').css('width',id+'%').attr('aria-valuenow', id)
+  let Progress_Status = $('<div>').addClass('col-md-3 progress-block').append("<div style='height:40px'class='progress'><div class='progress-bar progress-bar-striped bg-dark' role='progressbar' style='width:" + (id)*10 +"%' aria-valuenow='" + (id-1)*10 +"' aria-valuemin='0' aria-valuemax='100'>"+(id-1) +"/10" +"</div></div>")
   let second_row = $('<div>').addClass('row progress-row')
   $(second_row).append(Progress_Status)
   $('body').append(second_row)
