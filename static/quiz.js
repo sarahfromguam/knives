@@ -361,7 +361,7 @@ function update_correct_answer(correct_answers) {
   });
 }
 function display_end(){
-  let text = $('<div>').append("<div class= 'quiz-home-text grey font-weight-bold'>Good try! This is your score: "+ correct_answers +"/10<div>").addClass('m-5')
+  let text = $('<div>').append("<div class= 'quiz-home-text blue font-weight-bold'>Good Job! This is your score: "+ correct_answers +"/10<div>").addClass('m-5')
   let but = $('<div>').append("<button value='submit' class='start-quiz quiz-button btn btn-dark btn-lg goButton quiz-home-button'>RETAKE QUIZ!</button>").addClass('m-5')
   let but2 = $('<div>').append("<button value='submit' class='go-learn quiz-button btn btn-secondary btn-lg goButton quiz-end-button'>KEEP STUDYING</button>").addClass('m-5')
   let img = $('<div>').append("<img class='quiz-img' src='/static/imgs/knives-crossing.png' alt='Begin Quiz'></img>")

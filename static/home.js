@@ -5,7 +5,7 @@ $(document).ready(function(){
 
 function display_learning(information){
     $(learn).click(function(){
-        window.location.href = '/learn/0'
+        window.location.href = '/learn/1'
     })
 }
 

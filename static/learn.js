@@ -3,11 +3,11 @@ $(document).ready(function() {
   // console.log(store)
   // console.log(information)
   update_learning(information)
-  if (information["lesson_id"] == 0) {
+  if (information["lesson_id"] == 1) {
     $("#backButton").attr("disabled","disabled");
   }
 
-  if (information["lesson_id"] == 9) {
+  if (information["lesson_id"] == 10) {
     $("#nextButton").html('QUIZ! →');
   }
 })
@@ -20,7 +20,7 @@ const host = "http://127.0.0.1:5500/";
 function update_learning(information) {
   // include an if statement of "if URL is learn/0, disable the back button (cause there is no where else to go... else do below"
   $("#backButton").click(function() {
-    if (information["prevLesson_id"] == -1) {
+    if (information["prevLesson_id"] == 0) {
       window.location.href = '/home'
     }
     else {
@@ -32,12 +32,12 @@ function update_learning(information) {
   $("#nextButton").click(function() {
     // call the backend ro update the server and increase progress by 1
     update_progress(progress+1);
-    if (information["lesson_id"] == 9 || information["lesson_id"] == 10){
+    if (information["lesson_id"] == 10){
       console.log('BUTTON TRIGGERED')
       window.location.href = '/quiz'
     } else {
       update_progress(progress)
-      let progess_bar = $('<div>').css('width',id+'%').attr('aria-valuenow', id)
+      let progess_bar = $('<div class="progress">').css('width',id+'%').attr('aria-valuenow', id)
       $('.progress-row').append(progess_bar)
       console.log("hello on to next")
       window.location.href = '/learn/' + information["nextLesson_id"]
