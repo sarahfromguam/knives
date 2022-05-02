@@ -377,7 +377,7 @@ function display_end(){
     window.location.href = '/quiz/1'
   });
   $( ".go-learn" ).click(function() {
-    window.location.href = '/home/'
+    window.location.href = '/home'
   });
 }
 
