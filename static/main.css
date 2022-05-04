@@ -70,7 +70,11 @@ font-family: 'Sansita Swashed', cursive;
   color: darkgrey;
 }
 .blue{
-  color: #007bff
+  color: #007bff;
+}
+
+.black{
+  color: black;
 }
 
 .learn-container{
@@ -113,7 +117,12 @@ font-family: 'Sansita Swashed', cursive;
   margin: 30px;
 }
 
-.progress{
+.progress-block{
+  padding-left: 400px;
+}
+
+.progress-row{
+  padding-left: 200px;
 }
 
 .quiz-choice-pic{
@@ -139,7 +148,13 @@ font-family: 'Sansita Swashed', cursive;
 .quiz-container {
   position: relative;
   text-align: center;
-  color: #F3F3F3;
+}
+.quiz-text{
+  background-color: #F3F3F3;
+}
+
+.row {
+  background-color: #F3F3F3;
 }
 
 .frontpage-button{
@@ -164,9 +179,6 @@ font-family: 'Sansita Swashed', cursive;
   position: absolute;
 }
 
-.homepage-title{
-
-}
 
 .knifeRowImg {
   padding: 0 40px 40px 0;
@@ -233,7 +245,7 @@ font-family: 'Sansita Swashed', cursive;
   font-style: italic;
 }
 
-$sm-ch {
+.sm-ch {
   height: 200;
 }
 
