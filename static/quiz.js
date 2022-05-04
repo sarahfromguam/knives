@@ -57,15 +57,16 @@ function display_mc_pic_question(id){
   let progess_bar = $('<div>').addClass('offset-md-2 col-md-4 progress-block justify-content-center').append("<div style='height:40px'class='progress'><div class='progress-bar progress-bar-striped bg-dark' role='progressbar' style='width:" + (id-1)*10 +"%' aria-valuenow='" + (id-1)*10 +"' aria-valuemin='0' aria-valuemax='100'>"+(id-1) +"/10" +"</div></div>")
 
   let second_row = $('<div>').addClass('row progress-row pb-3')
-  let score = $('<div>').append('Score: ' + correct_answers + '/10').addClass('font-weight-bold quiz-text col-md-4 offset-md-2');
+  
 
   $(second_row).append(progess_bar)
-  $(second_row).append(score)
 
 
+  let score = $('<div>').html('Score: ' + correct_answers + '/10').addClass('font-weight-bold quiz-text score col-md-1');
   $(row).append(c1)
   $(row).append(c2)
   $(row).append(c3)
+  $(row).append(score)
 
   $('body').append(row)
   $('body').append(second_row)
@@ -84,8 +85,7 @@ function display_mc_pic_question(id){
       $('.progress-row').empty()
       let progess_bar = $('<div>').addClass('offset-md-2 col-md-4 progress-block justify-content-center').append("<div style='height:40px'class='progress'><div class='progress-bar progress-bar-striped bg-success' role='progressbar' style='width:" + id*10 +"%' aria-valuenow='" + id*10 +"' aria-valuemin='0' aria-valuemax='100'>"+id +"/10" +"</div></div>")
       $('.progress-row').append(progess_bar)
-      let score = $('<div>').append('Score: ' + (correct_answers+1) + '/10').addClass('font-weight-bold quiz-text col-md-3 offset-md-2');
-      $(second_row).append(score)
+      $('.score').html('Score: ' + (correct_answers + 1) + '/10')
       $( "body" ).off( "click", ".ch")
       $('.ch').off('mouseenter mouseleave');
 
@@ -93,7 +93,7 @@ function display_mc_pic_question(id){
     }else{
       $('.progress-row').empty()
       let progess_bar = $('<div>').addClass('offset-md-2 col-md-4 progress-block justify-content-center').append("<div style='height:40px'class='progress'><div class='progress-bar progress-bar-striped bg-success' role='progressbar' style='width:" + id*10 +"%' aria-valuenow='" + id*10 +"' aria-valuemin='0' aria-valuemax='100'>"+id +"/10" +"</div></div>")
-      $('progress-row').append(progess_bar)
+      $('.progress-row').append(progess_bar)
       $(second_row).append(progess_bar)
       let selected = $(this).attr('id')
       $( "body" ).off( "click", ".ch")
@@ -110,8 +110,8 @@ function display_mc_pic_question_correct(id){
 
   let correct_op = quiz_data[id]['answer']
   $('#' + correct_op).css('background-color','#90EE90')
-  let but = $('<div>').append("<button value='submit' class='btn btn-outline-primary btn-lg goButton quiz-but'> Next → </button>").addClass('m-5')
-  $('.answers-row').append(but)
+  let but = $('<div>').addClass('offset-md-3 col-md-3').append("<button value='submit' class='btn btn-outline-primary btn-lg goButton quiz-but'> Next → </button>")
+  $('.progress-row').append(but)
 
   $( ".quiz-but" ).click(function() {
     window.location.href = '/quiz/' + (parseInt(id)+1);
@@ -127,12 +127,10 @@ function display_mc_pic_question_wrong(id,selected){
   let incorrect_op = selected;
   $('#' + incorrect_op).css('background-color','#ffcccb')
   let desc = $('<div>').append(quiz_data[id]['explanation']).addClass('text-danger hammersmith font-weight-bold col-md-12')
-  $('.quiz-but').html('NEXT')
-  let score = $('<div>').append('Score: ' + correct_answers + '/10').addClass('font-weight-bold quiz-text col-md-4 offset-md-2');
-  $('.progress-row').append(score)
+
   $('body').append($('<div>').addClass('row text-center').append(desc))
-  let but = $('<div>').append("<button value='submit' class='btn btn-outline-primary btn-lg goButton quiz-but'> Next → </button>").addClass('m-5')
-  $('.answers-row').append(but)
+  let but = $('<div>').addClass('offset-md-3 col-md-3').append("<button value='submit' class='btn btn-outline-primary btn-lg goButton quiz-but'> Next → </button>")
+  $('.progress-row').append(but)
   
   $( ".quiz-but" ).click(function() {
     window.location.href = '/quiz/' + (parseInt(id)+1);
@@ -160,15 +158,15 @@ function display_mc_word_question(id){
   $(c3).append(t3)
 
   let progess_bar = $('<div>').addClass('offset-md-2 col-md-4 progress-block justify-content-center').append("<div style='height:40px'class='progress'><div class='progress-bar progress-bar-striped bg-dark' role='progressbar' style='width:" + (id-1)*10 +"%' aria-valuenow='" + (id-1)*10 +"' aria-valuemin='0' aria-valuemax='100'>"+(id-1) +"/10" +"</div></div>")
-  let score = $('<div>').append('Score: ' + correct_answers + '/10').addClass('font-weight-bold quiz-text col-md-3 offset-md-2');
+  
   let second_row = $('<div>').addClass('row progress-row pb-3')
   $(second_row).append(progess_bar)
-  $(second_row).append(score)
 
-
+  let score = $('<div>').html('Score: ' + correct_answers + '/10').addClass('font-weight-bold quiz-text score col-md-1');
   $(row).append(c1)
   $(row).append(c2)
   $(row).append(c3)
+  $(row).append(score)
 
   $('body').append(row)
   $('body').append(second_row)
@@ -192,8 +190,8 @@ function display_mc_word_question(id){
       $('.progress-row').empty()
       let progess_bar = $('<div>').addClass('offset-md-2 col-md-4 progress-block justify-content-center').append("<div style='height:40px'class='progress'><div class='progress-bar progress-bar-striped bg-success' role='progressbar' style='width:" + id*10 +"%' aria-valuenow='" + id*10 +"' aria-valuemin='0' aria-valuemax='100'>"+id +"/10" +"</div></div>")
       $('.progress-row').append(progess_bar)
-      let score = $('<div>').append('Score: ' + (correct_answers+1) + '/10').addClass('font-weight-bold quiz-text col-md-3 offset-md-2');
-      $('.progress-row').append(score)
+      $('.score').html('Score: ' + (correct_answers + 1) + '/10')
+
 
       display_mc_word_question_correct(id)
     }else{
@@ -217,8 +215,8 @@ function display_mc_word_question_correct(id){
 
   let correct_op = quiz_data[id]['answer']
   $('#' + correct_op).css('background-color','#90EE90')
-  let but = $('<div>').append("<button value='submit' class='btn btn-outline-primary btn-lg goButton quiz-but'> Next → </button>").addClass('m-5')
-  $('.answers-row').append(but)
+  let but = $('<div>').addClass('offset-md-3 col-md-3').append("<button value='submit' class='btn btn-outline-primary btn-lg goButton quiz-but'> Next → </button>")
+  $('.progress-row').append(but)
 
   $( ".quiz-but" ).click(function() {
     window.location.href = '/quiz/' + (parseInt(id)+1);
@@ -235,12 +233,11 @@ function display_mc_word_question_wrong(id,selected){
   
   $('.quiz-but').html('NEXT')
 
-  let but = $('<div>').append("<button value='submit' class='btn btn-outline-primary btn-lg goButton quiz-but'> Next → </button>").addClass('m-5')
-  $('.answers-row').append(but)
+  let but = $('<div>').addClass('offset-md-3 col-md-3').append("<button value='submit' class='btn btn-outline-primary btn-lg goButton quiz-but'> Next → </button>")
+  $('.progress-row').append(but)
   let desc = $('<div>').append(quiz_data[id]['explanation']).addClass('text-danger hammersmith font-weight-bold col-md-12')
   $('.quiz-but').html('NEXT')
-  let score = $('<div>').append('Score: ' + correct_answers + '/10').addClass('font-weight-bold quiz-text col-md-4 offset-md-2');
-  $('.progress-row').append(score)
+  
   $('body').append($('<div>').addClass('row text-center').append(desc))
   $( ".quiz-but" ).click(function() {
     window.location.href = '/quiz/' + (parseInt(id)+1);
@@ -262,15 +259,16 @@ function display_tf_question(id){
   $(c2).append(t2)
 
   let progess_bar = $('<div>').addClass('offset-md-2 col-md-4 progress-block justify-content-center').append("<div style='height:40px'class='progress'><div class='progress-bar progress-bar-striped bg-dark' role='progressbar' style='width:" + (id-1)*10 +"%' aria-valuenow='" + (id-1)*10 +"' aria-valuemin='0' aria-valuemax='100'>"+(id-1) +"/10" +"</div></div>")
-  let score = $('<div>').append('Score: ' + correct_answers + '/10').addClass('font-weight-bold quiz-text col-md-3 offset-md-2');
+  let score = $('<div>').html('Score: ' + correct_answers + '/10').addClass('font-weight-bold quiz-text score col-md-1');
   let second_row = $('<div>').addClass('row progress-row pb-3')
   $(second_row).append(progess_bar)
-  $(second_row).append(score)
+  
 
   let offset = $('<div>').addClass('col-md-3 col-md-offset-1')
   $(row).append(offset)
   $(row).append(c1)
   $(row).append(c2)
+  $(row).append(score)
 
   $('body').append(row)
   $('body').append(second_row)
@@ -293,8 +291,8 @@ function display_tf_question(id){
       let progess_bar = $('<div>').addClass('offset-md-2 col-md-4 progress-block justify-content-center').append("<div style='height:40px'class='progress'><div class='progress-bar progress-bar-striped bg-success' role='progressbar' style='width:" + id*10 +"%' aria-valuenow='" + id*10 +"' aria-valuemin='0' aria-valuemax='100'>"+id +"/10" +"</div></div>")
       $('.progress-row').append(progess_bar)
       update_correct_answer(correct_answers+1);
-      let score = $('<div>').append('Score: ' + (correct_answers+1) + '/10').addClass('font-weight-bold quiz-text col-md-3 offset-md-2');
-      $(second_row).append(score)
+      $('.score').html('Score: ' + (correct_answers + 1) + '/10')
+
       display_mc_word_question_correct(id)
     }else{
       $('.progress-row').empty()
